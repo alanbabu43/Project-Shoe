@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "cropper": "^4.1.0",
-    "jquery": "^3.7.0"
-  }
-}
