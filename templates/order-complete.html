@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Ion Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+<script src="https://unpkg.com/xlsx/dist/xlsx.core.min.js"></script>
+
+
+	</head>
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-7 col-md-9">
+							<div id="colorlib-logo"><a href="{% url 'home' %}">Footwear</a></div>
+						</div>
+						<div class="col-sm-5 col-md-3">
+							<form action="{% url 'search_brand' %}" method="post" class="search-wrap">
+								{% csrf_token %}
+							   <div class="form-group">
+								  <input type="search" name="query" class="form-control search" placeholder="Search">
+								  <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+							   </div>
+							</form>
+			         </div>
+		         </div>
+				 <div class="row">
+					<div class="col-sm-12 text-left menu-1">
+						<ul>
+							<li><a href="{% url 'home' %}">Home</a></li>
+							<li>
+								<a href="{% url 'men' %}">Men</a>
+							</li>
+							<li><a href="{% url 'women' %}">Women</a></li>
+							<li><a href="about.html">About</a></li>
+							{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
+							{% if user.is_authenticated %}
+							<li class="sig"><a href="{% url 'signout' %}">Sign Out</a></li>
+							{% else %}
+							<li class="sig"><a href="{% url 'signin' %}">Sign In</a></li>
+							{% endif %}
+							<li class="cart1 "><a href="{% url 'userprofile' %}"><i style="font-size:24px" class="fa">&#xf007;</i></a></li>
+							<li class="cart1"><a href="{% url 'wishlist' %}"><i style="font-size:24px" class="fa">&#xf08a;</i></a></li>
+							<li class="cart1"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart</a></li>
+						</ul>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="sale">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-8 offset-sm-2 text-center">
+							<div class="row">
+								<div class="owl-carousel2">
+									<div class="item">
+										<div class="col">
+											{% comment %} <h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3> {% endcomment %}
+										</div>
+									</div>
+									<div class="item">
+										<div class="col">
+											{% comment %} <h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3> {% endcomment %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Purchase Complete</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="colorlib-product">
+			<div class="container">
+				<div class="row row-pb-lg">
+					<div class="col-sm-10 offset-md-1">
+						<div class="process-wrap">
+							<div class="process text-center active">
+								<p><span>01</span></p>
+								<h3>Shopping Cart</h3>
+							</div>
+							<div class="process text-center active">
+								<p><span>02</span></p>
+								<h3>Checkout</h3>
+							</div>
+							<div class="process text-center active">
+								<p><span>03</span></p>
+								<h3>Order Complete</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-10 offset-sm-1 text-center">
+						<p class="icon-addcart"><span><i class="icon-check"></i></span></p>
+						<h2 class="mb-4">Thank you for purchasing, Your order is complete.</h2>
+						{% comment %} <h5>Your order id : {{id}}</h5> {% endcomment %}
+						<p class="mt-4">
+							<!-- <a href="index.html"class="btn btn-primary btn-outline-primary">Home</a> -->
+							<a href="{% url 'home' %}"class="btn btn-primary btn-outline-primary"><i class="icon-shopping-cart"></i> Continue Shopping</a>
+							<a href="{% url 'myorders' %}"class="btn btn-primary btn-outline-primary"> View Product</a>
+						</p><br>
+
+						<table class="table table-bordered" id="Invoice_of_your_order">
+							<tbody>
+							  <tr>
+								<th>Order Number:</th>
+								<td>{{ order_number }}</td>
+								{% comment %} <th>Transaction ID:</th>
+								<td>{{ payment_id }}</td> {% endcomment %}
+							  </tr>
+							  <!-- Include any other order-related information in the same format -->
+							  <tr>
+								<th>Total Amount:</th>
+								<td>₹{{ amount }}</td>
+							  </tr>
+							  <tr>
+								<th colspan="2">Shipping Details</th>
+							  </tr>
+							  <tr>
+								<th>Name:</th>
+								<td>{{ address.name }}</td>
+							  </tr>
+							  <tr>
+								<th>Address Line 1:</th>
+								<td>{{ address.house_name }}, {{address.address_line_1}}</td>
+							  </tr>
+							  <tr>
+								<th>State/City:</th>
+								<td>{{ address.state }}, {{ address.city }}</td>
+							  </tr>
+							  <tr>
+								<th>Country:</th>
+								<td>{{ address.country }}</td>
+							  </tr>
+							  <tr>
+								<th colspan="2">Contact Information</th>
+							  </tr>
+							  <tr>
+								<th>Email:</th>
+								<td>{{ user.email }}</td>
+							  </tr>
+							  <tr>
+								<th>Phone:</th>
+								<td>{{ user.phone_number }}</td>
+							  </tr>
+							</tbody>
+						  </table>
+
+							<a onclick="exportTableToPDF('Invoice_of_your_order','Invoice_of_your_order')" class="btn btn-success mt-3">Download Invoice</a>
+			  
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer id="colorlib-footer" role="contentinfo">
+			<div class="container">
+				<div class="row row-pb-md">
+					<div class="col footer-col colorlib-widget">
+						<h4>About Footwear</h4>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+						<p>
+							<ul class="colorlib-social-icons">
+								<li><a href="#"><i class="icon-twitter"></i></a></li>
+								<li><a href="#"><i class="icon-facebook"></i></a></li>
+								<li><a href="#"><i class="icon-linkedin"></i></a></li>
+								<li><a href="#"><i class="icon-dribbble"></i></a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Customer Care</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Returns/Exchange</a></li>
+								<li><a href="#">Gift Voucher</a></li>
+								<li><a href="#">Wishlist</a></li>
+								<li><a href="#">Special</a></li>
+								<li><a href="#">Customer Services</a></li>
+								<li><a href="#">Site maps</a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Information</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Delivery Information</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Order Tracking</a></li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="col footer-col">
+						<h4>News</h4>
+						<ul class="colorlib-footer-links">
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="#">Press</a></li>
+							<li><a href="#">Exhibitions</a></li>
+						</ul>
+					</div>
+
+					<div class="col footer-col">
+						<h4>Contact Information</h4>
+						<ul class="colorlib-footer-links">
+							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
+							<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
+							<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+							<li><a href="#">yoursite.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copy">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<p>
+							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
+							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+   <!-- popper -->
+   <script src="{% static 'js/popper.min.js' %}"></script>
+   <!-- bootstrap 4.1 -->
+   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   <!-- jQuery easing -->
+   <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+	<!-- Owl carousel -->
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/magnific-popup-options.js' %}"></script>
+	<!-- Date Picker -->
+	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<!-- Main -->
+	<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+	function exportTableToExcel(tableID, filename = '') {
+		console.log("ok")
+	var tableSelect = document.getElementById(tableID);
+	var sheet = XLSX.utils.table_to_sheet(tableSelect);
+
+	// Create a new workbook and add the sheet
+	var workbook = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(workbook, sheet, 'Sheet1');
+
+	// Specify the file name
+	filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+
+	// Generate the XLSX file
+	var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+	var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+	// Download the blob as a file
+	download(blob, filename);
+	}
+
+	function download(blob, filename) {
+	var url = window.URL.createObjectURL(blob);
+	var link = document.createElement('a');
+	link.href = url;
+	link.download = filename;
+	link.click();
+	}
+
+
+	</script>
+
+
+	<!-- convert to pdf script -->
+
+<script>
+
+	function exportTableToPDF(tableID, filename = '') {
+	  var tableSelect = document.getElementById(tableID);
+	
+	  // Specify the file name
+	  filename = filename ? filename : 'order_id';
+	
+	  // Generate the PDF file
+	  const { jsPDF } = window.jspdf; 
+	  var doc = new jsPDF();
+	  doc.autoTable({ html: '#' + tableID });
+	
+	  // Download the PDF file
+	  doc.save(filename + '.pdf');
+	}
+</script>
+
+	</body>
+</html>
+

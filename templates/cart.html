@@ -1,0 +1,438 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Ion Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+	
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	{% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> {% endcomment %}
+
+	</head>
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-7 col-md-9">
+							<div id="colorlib-logo"><a href="{% url 'home' %}">Footwear</a></div>
+						</div>
+						<div class="col-sm-5 col-md-3">
+							<form action="{% url 'search_brand' %}" method="post" class="search-wrap">
+								{% csrf_token %}
+							   <div class="form-group">
+								  <input type="search" name="query" class="form-control search" placeholder="Search">
+								  <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+							   </div>
+							</form>
+			         </div>
+		         </div>
+					<div class="row">
+						<div class="col-sm-12 text-left menu-1">
+							<ul>
+								<li class="active"><a href="{% url 'home' %}">Home</a></li>
+								<li><a href="{% url 'men' %}">Men</a>
+								<li><a href="women.html">Women</a></li>
+								<li><a href="about.html">About</a></li>
+								{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
+								{% if user.is_authenticated %}
+								<li class="sig"><a href="{% url 'signout' %}">Sign Out</a></li>
+								{% else %}
+								<li class="sig"><a href="{% url 'signin' %}">Sign In</a></li>
+								{% endif %}
+								<li class="cart1 "><a href="{% url 'userprofile' %}"><i style="font-size:24px" class="fa">&#xf007;</i></a></li>
+								<li class="cart1"><a href="{% url 'wishlist' %}"><i style="font-size:24px" class="fa">&#xf08a;</i></a></li>
+								<li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sale">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-8 offset-sm-2 text-center">
+							<div class="row">
+								<div class="owl-carousel2">
+									<div class="item">
+										<div class="col">
+											{% comment %} <h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3> {% endcomment %}
+										</div>
+									</div>
+									<div class="item">
+										<div class="col">
+											{% comment %} <h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3> {% endcomment %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Shopping Cart</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<section class="shop-cart spad mt-5">
+       
+        <div class="container">
+			<div class="text-center">
+				<h5>{{message}}</h5>
+			</div>
+            <div class="row">
+                <div class="col-8">
+                    
+                    <div class="card mb-3" style="max-width: 780px;border: none;">
+						
+
+                        {% for cart_item in cart_items %}
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="{{MEDIA_URL}}{{cart_item.product.image.url}} " class="img-fluid rounded-start" alt="Image">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h4 class="card-title">{{cart_item.product_variant.product_name}}</h4>
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.{{item.product.description}}</p>
+                              <h6 class="card-text">₹{{ cart_item.product_variant.price}}</h6>
+                              <h6 class="card-text">Size : {{ cart_item.product_variant.size}}</h6>
+                              {% comment %} <p class="card-text"><small class="text-muted">Quantity  </small></p> {% endcomment %}
+
+
+								<h6>Quantity :</h6>
+							  <div class="col-8 input-group mb-3">
+								{% comment %} <h5>Qantity</h5> {% endcomment %}
+								<button class="plus-btn btn btn-outline-secondary" type="button" data-id="{{cart_item.id}}"  data-action='increase'>+</button>
+							  
+  
+								<div class="entry value text-center mt-2" data-id="{{ cart_item.id }}" style="width: 30px;">
+								  <span class="cart_item_quantity">{{ cart_item.quantity }}</span>
+								</div>
+								
+							  <button class="minus-btn btn btn-outline-secondary" type="button"  data-id="{{cart_item.id}}" data-action='decrease'>-</button>
+								</div>
+
+
+
+
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">  
+                                    <a href="{% url 'delete_cart_item' cart_item.id %}" class="card-link btn btn-dark ml-5">Delete from cart</a>
+                           </div>
+                        </div>
+                      </div>
+                  {% endfor %}
+                    </div>
+                </div>
+
+				<script>
+					$('.plus-btn').on('click', function() {
+						console.log("plus function working")
+						var cartItemId = $(this).data('id');
+						var action = $(this).data('action');
+						console.log(cartItemId)
+						updateCartItemQuantity(cartItemId, action);
+						
+						});
+						
+						$('.minus-btn').on('click', function() {
+						console.log("minus function working")
+						var cartItemId = $(this).data('id');
+						var action = $(this).data('action');
+						console.log(cartItemId)
+						updateCartItemQuantity(cartItemId, action);
+						
+						});
+				function updateCartItemQuantity(cartItemId, action) {
+					$.ajax({
+					  url: "{% url 'update_cart_item_quantity' %}",
+					  method: 'GET',
+					  data: {
+						cart_item_id: cartItemId,
+						action: action
+					  },
+					  success: function(response) {
+						if (response.status === 200) {
+						  // Update the quantity value in the template
+						  var quantitySpan = $('.value[data-id="' + cartItemId + '"] span');
+						  quantitySpan.text(response.quantity);
+					   var priceSpan = $('#total_price');
+						priceSpan.text(response.total);
+						var itemspan = $('#total_items');
+						itemspan.text(response.total_items);
+					   
+						  
+						}
+					  }
+					});
+				  }
+				</script>
+
+
+
+				{% if cart_items %}
+                <div class="col-4">
+					<div class="cart__discount">
+						<h4>Apply Coupon</h4>
+							
+							<input type="text" name="coupon" id="coupon" placeholder="Coupon code" style="padding: 5px; border: 1px solid #ccc;height:45px;">
+							
+							
+							<button id="apply-coupon-button" style='background-color: rgb(83, 75, 201); color: #fff; border: none; padding: 10px 20px; margin-left: 5px;'>Apply</button>
+							<h6 id="coupon-id" style="padding-top:1rem;"></h6>
+							<h6>Available Coupons</h6>
+							{% for c in coupon %}
+							<ul>
+								<li>{{c.coupon_code}} - Get ₹ {{c.discount_price}} discount</li>
+							</ul>
+							{% endfor %}
+
+					</div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Cart Total</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">
+                            Total items:
+                            <span class="pl-3" id="total_items"> {{total}}</span>
+                        </h6>
+                          <h6  class="card-subtitle mb-2 text-muted">Sub Total:
+                            <span class='pl-4' id="total_price"> ₹  {{sum}}</span>
+                          </h6>
+                          <p class="card-text">.</p>
+                          <a href="{% url 'Checkout' %}" class="card-link btn btn-dark ml-5">Proceed to Checkout</a>
+                          <a href="{% url 'home' %}" class="card-link btn btn-dark ml-5 mt-3">Continue Shopping</a>
+                        </div>
+                      </div>
+					  {% endif %}
+                </div>
+            </div>
+
+			<script>
+				function getCookie(name) {
+				var cookieValue = null;
+				if (document.cookie && document.cookie !== '') {
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+					var cookie = cookies[i].trim();
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+					}
+				}
+				return cookieValue;
+				}
+			   $(document).ready(function() {
+				$(document).on('click', '#apply-coupon-button', function() {
+				  applyCoupon();
+				});
+
+			  });
+			  
+			  function applyCoupon() {
+				console.log("button clicked");
+				var url = "{% url 'apply_coupon' %}";
+				var csrfToken = getCookie('csrftoken');
+				var coupon = $('#coupon').val();
+				console.log(coupon);
+				console.log("hii");
+				var couponId = $('#coupon-id');
+				console.log(couponId);
+			  
+				var totalPrice = parseInt($('#total_price').text().replace('₹ ', ''));
+
+				console.log(totalPrice);
+			  
+				$.ajax({
+				  url: url,
+				  type: 'POST',
+				  dataType: 'json',
+				  headers: {
+					'Content-type': 'application/json',
+					'X-CSRFToken': csrfToken
+				  },
+				  data: JSON.stringify({
+					coupon: coupon,
+					total_price: totalPrice
+				  }),
+				  success: function(response) {
+					if (response) {
+					  couponId.html(response.message);
+					  $('#total_price').text('₹ ' + response.total);
+					}
+				  },
+				  error: function() {
+					console.log('Error');
+				  }
+				});
+			  }
+			  </script>
+
+              
+        </div>
+    </section>
+
+
+
+
+
+		<footer id="colorlib-footer" role="contentinfo">
+			<div class="container">
+				<div class="row row-pb-md">
+					<div class="col footer-col colorlib-widget">
+						<h4>About Footwear</h4>
+						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
+						<p>
+							<ul class="colorlib-social-icons">
+								<li><a href="#"><i class="icon-twitter"></i></a></li>
+								<li><a href="#"><i class="icon-facebook"></i></a></li>
+								<li><a href="#"><i class="icon-linkedin"></i></a></li>
+								<li><a href="#"><i class="icon-dribbble"></i></a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Customer Care</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Returns/Exchange</a></li>
+								<li><a href="#">Gift Voucher</a></li>
+								<li><a href="#">Wishlist</a></li>
+								<li><a href="#">Special</a></li>
+								<li><a href="#">Customer Services</a></li>
+								<li><a href="#">Site maps</a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col footer-col colorlib-widget">
+						<h4>Information</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Delivery Information</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Order Tracking</a></li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="col footer-col">
+						<h4>News</h4>
+						<ul class="colorlib-footer-links">
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="#">Press</a></li>
+							<li><a href="#">Exhibitions</a></li>
+						</ul>
+					</div>
+
+					<div class="col footer-col">
+						<h4>Contact Information</h4>
+						<ul class="colorlib-footer-links">
+							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
+							<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
+							<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+							<li><a href="#">yoursite.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copy">
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						<p>
+							<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span> 
+							<span class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="http://pexels.com/" target="_blank">Pexels.com</a></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+   <!-- popper -->
+   <script src="{% static 'js/popper.min.js' %}"></script>
+   <!-- bootstrap 4.1 -->
+   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   <!-- jQuery easing -->
+   <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+	<!-- Owl carousel -->
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/magnific-popup-options.js' %}"></script>
+	<!-- Date Picker -->
+	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	<!-- Main -->
+	<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
+
