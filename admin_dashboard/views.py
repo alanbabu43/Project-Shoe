@@ -172,9 +172,29 @@ def sales_report_by_product(request, id):
         'number_delivered_orders':number_delivered_orders,
         'total_stock':total_stock,
     }
-    
-
     return render(request, 'admin/sales_report_by_product.html', context)
+
+
+def sales_date(request):
+    if request.method == 'GET':
+        form = DateFilterForm(request.GET)
+        # order_by_date = Orders.objects.annotate(month=ExtractDay('created_at')).values('day').annotate(count=Count('id')).values('day','count')
+        # totalOrders = []
+        # for o in order_by_date:
+        #  totalOrders.append(list(o.values())[1])
+
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+
+            # Query the sales data within the specified date range
+            sales_data = Order.objects.filter(created_at__range=[start_date, end_date])
+
+            return render(request, 'admin/sales-report-daily.html', {'sales_data': sales_data, 'form': form,})
+    else:
+        form = DateFilterForm()
+
+    return render(request, 'admin/sales-report-daily.html', {'form': form})
 
 
 # admin login page
@@ -550,9 +570,11 @@ def edit_order(request, id):
 def order_products(request, id):
     orders = Order.objects.get(pk=id)
     myorder = OrderProduct.objects.filter(order=orders)
+    add = orders.address
     context = {
         'orders': orders,
-        'myorder':myorder
+        'myorder':myorder,
+        'add': add,
     }
     return render(request, 'admin/admin_orderproducts.html', context) 
 

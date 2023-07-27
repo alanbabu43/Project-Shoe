@@ -147,8 +147,9 @@
 		<div class="colorlib-product">
 			<div class="container">
 				<div class="row">
-		{% if orders %}
+		
 		<table class="table caption-top">
+			{% if orders %}
 			<!-- <caption>List of categories</caption> -->
 			<thead>
 			  <tr>
@@ -245,8 +246,8 @@
 				<h5 class="text-center">You don't have any order</h5>
 			  </div>
 			</tbody>
+			{% endif %}
 		  </table>
-		  {% endif %}
 	</div>
 </div>
 </div>

@@ -5,6 +5,7 @@ urlpatterns = [
   path('admin_panel', views.admin_panel,name="admin_panel"),
   path('sales_report_by_product/<int:id>/', views.sales_report_by_product,name="sales_report_by_product"),
   path('sales_report', views.sales_report,name="sales_report"),
+  path('sales_date', views.sales_date,name="sales_date"),
   path('admin_login', views.admin_login,name="admin_login"),
   path('admin_logout', views.admin_logout,name="admin_logout"),
 

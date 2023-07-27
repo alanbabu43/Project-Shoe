@@ -154,15 +154,8 @@
 					<div class="col-md-12">
 						<!-- <div class="form-group"> -->
 						  <form id="addressForm">
-						  {% comment %} {% if address %} {% endcomment %}
-						  {% comment %} {% for ads in address %} {% endcomment %}
-						  
 						  <h2>{{add.name}},</h2>
 						  <h6>{{add.house_name}}, {{add.address_line_1}}, {{add.city}},<br> {{add.state}}, Pincode: {{add.pincode}}, {{add.country}}, Phone number: {{add.phone}}</h6>
-						  
-						  <!-- <a href="" class="btn btn-success">Select</a> -->
-						  {% comment %} {% endfor %} {% endcomment %}
-						  {% comment %} {% endif %} {% endcomment %}
 						  </form>
 							  
 						<!-- </div> -->
@@ -179,7 +172,7 @@
 						<th scope="col">Product</th>
 						<th scope="col">Brand</th>
 						<th scope='col'>Quantity</th>
-						<th scope="col">Price</th>
+						{% comment %} <th scope="col">Price</th> {% endcomment %}
 						<th scope="col">Status</th>
 				
 					  </tr>
@@ -191,7 +184,7 @@
 						<td style="justify-content: center;">{{o.product}}</td>
 						<td style="justify-content: center;">{{o.product.Brand}}</td>
 						<td style="justify-content: center;">{{ o.quantity}}</td>
-						<td style="justify-content: center;">₹{{ o.product_price}}</td>
+						{% comment %} <td style="justify-content: center;">₹{{ o.product_price}}</td> {% endcomment %}
 						
 						<td style="justify-content: center; color: {% if o.order.status == 'New' %}blue{% elif o.order.status == 'Pending' %}orange{% elif o.order.status == 'Shipped' %}brown{% elif o.order.status == 'Delivered' %}green{% elif o.order.status == 'Cancelled' %}red{% elif o.order.status == 'Return' %}red{% endif %}">{{ o.order.status }}</td>
 						

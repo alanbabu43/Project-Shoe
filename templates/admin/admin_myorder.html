@@ -114,6 +114,7 @@
                                 <th scope="col">User Name</th>
                                 <th scope="col">Order.No</th>
                                 <th scope="col">Order.Date</th>
+                                <th scope="col">Total Price</th>
                                 <th scope="col">Payment Method</th>
                                 <th scope="col">Payment Status</th>
                                 <th scope="col">Order Status</th>
@@ -128,6 +129,7 @@
                                 <th><a href="{% url 'order_products' order.id %}">{{order.user}}</a></th>
                                 <td>{{ order.order_number }}</td>
                                 <td>{{ order.created_at }}</td>
+                                <td>{{ order.order_total }}</td>
                                 <td>{{ order.payment.payment_method }}</td>
                                 <td>{{order.payment.status}}</td>
                                 <td style="color: {% if order.status == 'New' %}blue{% elif order.status == 'Pending' %}orange{% elif order.status == 'Shipped' %}brown{% elif order.status == 'Delivered' %}green{% elif order.status == 'Cancelled' %}red{% elif order.status == 'Return' %}red{% endif %}">{{ order.status }}</td>
