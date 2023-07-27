@@ -178,10 +178,7 @@ def sales_report_by_product(request, id):
 def sales_date(request):
     if request.method == 'GET':
         form = DateFilterForm(request.GET)
-        # order_by_date = Orders.objects.annotate(month=ExtractDay('created_at')).values('day').annotate(count=Count('id')).values('day','count')
-        # totalOrders = []
-        # for o in order_by_date:
-        #  totalOrders.append(list(o.values())[1])
+        
 
         if form.is_valid():
             start_date = form.cleaned_data['start_date']
@@ -338,13 +335,13 @@ def add_product(request):
 
 
 # admin product variant management
-
 def product_variant(request):
     pro = ProductVariant.objects.all()
     context = {
         'pro' : pro
     }
     return render(request, 'admin/product_variant.html', context)
+
 
 def del_product_variant(request, id):
     if request.method == "POST":
@@ -355,17 +352,11 @@ def del_product_variant(request, id):
 def add_product_variant(request):
     if request.method == "POST":
         product_form = VariantForm(request.POST,request.FILES)
-        # image_form = ProductImageFormSet(request.POST, request.FILES, instance=product())
         if product_form.is_valid():
-            # myproduct = product_form.save(commit=False)
             product_form.save()
-            # image_form.instance = myproduct
-            # image_form.save()
-            # return redirect('products')
             return redirect("product_variant")
     else:
         product_form = VariantForm()
-        # image_form = ProductImageFormSet(instance=product())
     context = {'product_form': product_form}
     return render(request, 'admin/add_product_variant.html', context)
 
@@ -386,7 +377,6 @@ def edit_product_variant(request, id):
 
 
 # admin category management
-
 def category(request):
     pro = Category.objects.all()
     context = {
@@ -418,17 +408,11 @@ def edit_category(request, id):
 def add_category(request):
     if request.method == "POST":
         product_form = CategoryForm(request.POST,request.FILES)
-        # image_form = ProductImageFormSet(request.POST, request.FILES, instance=product())
         if product_form.is_valid():
-            # myproduct = product_form.save(commit=False)
             product_form.save()
-            # image_form.instance = myproduct
-            # image_form.save()
-            # return redirect('products')
             return redirect("category")
     else:
         product_form = CategoryForm()
-        # image_form = ProductImageFormSet(instance=product())
     context = {'product_form': product_form}
     return render(request, 'admin/add_category.html', context)
 
@@ -466,17 +450,12 @@ def edit_brand(request, id):
 def add_brand(request):
     if request.method == "POST":
         product_form = BrandForm(request.POST,request.FILES)
-        # image_form = ProductImageFormSet(request.POST, request.FILES, instance=product())
         if product_form.is_valid():
-            # myproduct = product_form.save(commit=False)
             product_form.save()
-            # image_form.instance = myproduct
-            # image_form.save()
-            # return redirect('products')
+            
             return redirect("brand")
     else:
         product_form = BrandForm()
-        # image_form = ProductImageFormSet(instance=product())
     context = {'product_form': product_form}
     return render(request, 'admin/add_brand.html', context)
 
@@ -540,10 +519,8 @@ def ordersearch(request):
     users = []
     if request.method == 'POST':
         query = request.POST['query']
-        # orders = CustomUser.objects.filter(Q(email__icontains=query)|Q(id__contains=query))
         orders = Order.objects.filter(Q(user__email__icontains=query) | Q(user__id__contains=query)).order_by("-created_at")
 
-        # order = Order.objects.filter(order=orders)
     return render(request, "admin/order-search.html", {'orders':orders})
 
 
@@ -577,34 +554,6 @@ def order_products(request, id):
         'add': add,
     }
     return render(request, 'admin/admin_orderproducts.html', context) 
-
-
-
-
-
-# def order_tracker(request):
-#     if request.method=="POST":
-#         orderId = request.POST.get('orderId', '')
-#         try:
-#             order=Order.objects.filter(pk=orderId)
-
-#             if len(order)>0:
-#                 update = Order.objects.filter(pk=orderId)
-#                 updates = []
-#                 for order in update:
-#                     # change order status to scheduled
-#                     if order.status == 'processing':
-#                         order.status = 'scheduled'
-#                         order.save()
-#                     updates.append({'status' : order.status})
-#                     response = json.dumps(updates)
-#                     return HttpResponse(response)
-#             else:
-#                 return HttpResponse('{}')
-#         except Exception as e:
-#             # add some logging here
-#             return HttpResponse('{}')
-#     return render(request,"admin/order_status.html")
 
 
 def coupon_manage(request):

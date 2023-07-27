@@ -1,145 +1,3 @@
-# from django.views import View
-# from django.shortcuts import render, redirect
-# from .models import *
-# from products.models import *
-# from cart.models import *
-# from user_account.models import *
-# from django.http import JsonResponse
-# import datetime
-# # Create your views here.
-
-
-# def place_order(request):
-#     flag = 0
-#     print("placr")
-#     current_user = request.user
-#     # if cart count is less than or equal to zero redirect back to homepage
-#     cart = Cart.objects.get(user=current_user)
-#     cart_items = CartItem.objects.filter(user=current_user)
-#     cart_count = cart_items.count()
-#     print(cart_count)
-#     if cart_count <= 0:
-#         return redirect('home')       
-#     else:
-#         print("else")
-#         total_price = cart.get_total_price()
-#         if request.method == 'GET':
-#             try:
-#                 current_order = Order.objects.get(user=current_user)
-#                 print(current_order,"current")
-#                 if current_order:
-#                     data = current_order
-#                 else:
-#                     raise Exception("order not formed")
-#             except Exception as e:
-#                 print("exception")
-#                 data = Order()
-#             data.user = current_user
-#             selected_option = request.GET.get('selectedOption')
-#             payment_method_mapping = {
-#                 'cod': 'COD',
-#                 'razorpay': 'Razorpay',
-#                     # Add more mappings as needed
-#             }
-#             print(selected_option)
-#             payment_method_selected = payment_method_mapping.get(selected_option)
-#             print(payment_method_selected)
-#             if selected_option == 'cod':
-#                 print("first one")
-#                 payment_method = Payment.objects.create(user=current_user,payment_method=payment_method_selected,amount_paid=total_price,status=False)
-#                 print(payment_method)
-#                 data.payment = payment_method
-                                        
-#                 default_address_id = request.GET.get('defaultAddressId')
-#                 data.shipping_address =  Address.objects.get(id=default_address_id)
-#                 print(data.shipping_address)
-#                 data.order_total = total_price
-#                 print(data.user,data.payment,data.shipping_address,data.order_total)
-#                 data.save()
-#                 print(data)
-
-#                 # generate order number
-#                 yr = int(datetime.date.today().strftime('%Y'))
-#                 dt = int(datetime.date.today().strftime('%d'))
-#                 mt = int(datetime.date.today().strftime('%m'))
-#                 d = datetime.date(yr,mt,dt)
-#                 current_date = d.strftime("%Y%m%d")
-#                 order_number= current_date + str(data.id)
-#                 data.order_number = order_number
-#                 print(data.order_number,current_date)
-#                 data.save()
-
-#                 for item in cart_items:
-#                     order = OrderProduct.objects.create(product=item.product,
-#                     variation=item.product_variant,
-#                     payment=payment_method,
-#                     order=data,
-#                     quantity=item.quantity,
-#                     product_price=item.product_variant.price,
-#                     user=current_user,
-#                     ordered=True)
-#                     print(order)
-#                     flag = 1
-#                 return JsonResponse({'message': 'Order placed successfully.','flag':flag})
-            # elif selected_option == 'razorpay':
-                
-            #     print("elif")
-            #     order = order_payment(total_price)
-            #     print(order)
-            #     return render(request, 'payment_options.html', {
-            #         'order_id': order['id'],
-            #         'amount': order['amount'],
-            #         'razorpay_key': settings.razor_pay_key_id
-            #     })
-                                                 
-            #     print(payment_razor)
-                                        
-            #     payment_method = Payment.objects.create(user=current_user,payment_method=payment_method_selected,amount_paid=total_price,status=False)
-                                            
-            #     data.payment = payment_method
-                                            
-            #     default_address_id = request.GET.get('defaultAddressId')
-            #     data.shipping_address =  UserProfile.objects.get(id=default_address_id)
-            #     print(data.shipping_address)
-            #     data.order_total = total_price
-            #     print(data.user,data.payment,data.shipping_address,data.order_total)
-            #     data.save()
-            #     print(data)
-            #     # generate order number
-            #     yr = int(datetime.date.today().strftime('%Y'))
-            #     dt = int(datetime.date.today().strftime('%d'))
-            #     mt = int(datetime.date.today().strftime('%m'))
-            #     d = datetime.date(yr,mt,dt)
-            #     current_date = d.strftime("%Y%m%d")
-            #     order_number= current_date + str(data.id)
-            #     data.order_number = order_number
-            #     print(data.order_number,current_date)
-            #     data.save()
-            #     for item in cart_items:
-            #         order = OrderItem.objects.create(product=item.product,
-            #                 product_variant=item.product_variant,
-            #                 product_color=item.product_color,
-            #                 order=data,
-            #                 quantity=item.quantity,
-            #                 ordered=True)
-            #         print(order)
-                                                        
-            #     return JsonResponse({'message': 'Order placed successfully.'})
-        
-    # Render the place order page if the request method is GET
-
-
-# def confirm_order(request):
-
-#     print("reauest hit")
-#     selected_option = request.GET.get('payment')
-#     print(selected_option)
-#     return HttpResponse("rest")
-
-
-
-
-
 from typing import Any
 from django.views import View
 from django.shortcuts import render, redirect
@@ -317,15 +175,12 @@ class place_order(View):
                                                 user=self.current_user,
                                                 ordered=True)
                                         print(order)
-                                        # if 'total' in request.session:
-                                        #         del request.session['total']
                                         item.delete()
                                         variant = item.product_variant
                                         variant.stock -= item.quantity
                                         print(variant.stock)
                                         variant.save()
-                                #     cart = Cart.objects.get(user=request.user)
-                                #     total_price = cart.get_total_price()
+                             
                                     payment_id = payment_method.id
                                     redirect_url = reverse('razorpay') + f'?total={self.total_price}&id={order_id}&order_number={order_number}&payment_id={payment_id}&address_id={self.default_address_id}'
                                     return JsonResponse({'message': 'razorpay entered.','redirect':redirect_url})
