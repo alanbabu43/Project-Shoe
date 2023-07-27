@@ -330,7 +330,6 @@ def verify_code(request):
         if form.is_valid():
             code = form.cleaned_data.get('code')
             phone_no = request.session.get('phone')
-            # user = authenticate(request,phone_number=phone_no)
             if verify.check(phone_no, code):
                 print("checked")
                 user = CustomUser.objects.get(email = request.session.get('username'))

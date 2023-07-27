@@ -37,22 +37,7 @@ def add_to_cart(request):
         if product_variant:
              CartItem.objects.create(user=user,cart=cart,product=product,product_variant=product_variant)
 
-            # cart_item,item_created = CartItem.objects.get_or_create(user=user,cart=cart,product=product)
-            # if cart_item:
-            #     print("there is an item")
-            #     cart_item.quantity = cart_item.quantity + int(quantity)
-            #     cart_item.save()
-            # else:
-            #     print("new item created")
-     
-        # else:
-        #     text = "Out of stock"
-        #     return render(request,'product_details.html',{'text':text})
-        # context ={
-        #     'product' :product,
-        #     'cart_item' : cart_item           
-        # }
-        # # return render(request,'cart.html',context)
+            
 
         return JsonResponse({'status':400,"message":"added"})
 
@@ -64,7 +49,6 @@ def delete_cart_item(request,id):
 
 @login_required(login_url='signin')
 def cart(request):
-    # user = request.user if request.user.is_authenticated else None
     user = request.user
     try:
         if user: 
@@ -75,7 +59,6 @@ def cart(request):
                 if (request.session.get('total')):
                     sum = request.session.get('total')
                 else:
-                # prod = cart_items.get_subtotal()
                     sum = cart.get_total_price()
                 total = cart.get_total_products()
                 coupon = Coupon.objects.all()
@@ -94,8 +77,6 @@ def cart(request):
         else:
             raise Exception("User not authenticated")  # Raise an exception if the user is not authenticated
     except Exception as e:
-        # Handle the exception appropriately
-        # For example, you can log the error or display a user-friendly message
         error_message = f"Error occurred: {str(e)}"
         print(error_message)
         return redirect('home')
@@ -108,7 +89,6 @@ def update_cart_item_quantity(request):
         cart_item_id = request.GET.get('cart_item_id')
         action = request.GET.get('action')
 
-        # cart_item = Cartitem.objects.get(id=cart_item_id)
         try:
            print('try')
            cart_item = CartItem.objects.get(id=cart_item_id) 
@@ -128,12 +108,6 @@ def update_cart_item_quantity(request):
             del request.session['total']
 
         return JsonResponse({'status': 200, 'quantity': cart_item.quantity,'total':cart.get_total_price(),'total_items':cart.get_total_products()})
-    
-
-# def admin_cart(request):
-#      cart = Cart.objects.all()
-#      cartitems = Cart.objects.all()
-#      return render(request,'admin_cart.html',{'cart':cart,'cartitems':cartitems})
 
 
 class Checkout(View):
@@ -147,9 +121,7 @@ class Checkout(View):
                 if (request.session.get('total')):
                     sum = request.session.get('total')
                 else:
-                # prod = cart_items.get_subtotal()
                     sum = cart.get_total_price()
-                # sum = cart.get_total_price()
                 total = cart.get_total_products()
 
                 context = {
@@ -244,7 +216,6 @@ def payment(request, id):
         sum = request.session.get('total')
     else:
         sum = cart.get_total_price()
-    # sum = cart.get_total_price()
     total = cart.get_total_products()
     try:
         wallet = Wallet.objects.get(user=request.user)
@@ -257,18 +228,11 @@ def payment(request, id):
         flag = 1
     else:
         flag = 0
-    # import razorpay
-    # client = razorpay.Client(auth=("rzp_test_9PWZXmd88RGOGY", "CMlBW52kdSRZWeoUu5Dlt3Qv"))
-                
-    # razorpay_order = client.order.create(
-    # {"amount": int(self.total_price), "currency": "INR", "payment_capture": "1"}
-    #                                 )
     context = {
             'sum': sum,
             'total': total,
             'adds': adds,
             'flag': flag,
-            # 'razorpay_order': razorpay_order,
         }
     return render(request, 'payment.html', context)
 
