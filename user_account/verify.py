@@ -1,7 +1,7 @@
 import os
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
-from dotenv import load_dotenv()
+from dotenv import load_dotenv
 
 load_dotenv()
 
