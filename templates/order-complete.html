@@ -83,7 +83,7 @@
 								<a href="{% url 'men' %}">Men</a>
 							</li>
 							<li><a href="{% url 'women' %}">Women</a></li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="{% url 'about' %}">About</a></li>
 							{% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
 							{% if user.is_authenticated %}
 							<li class="sig"><a href="{% url 'signout' %}">Sign Out</a></li>
